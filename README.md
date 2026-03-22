@@ -18,8 +18,6 @@ The system uses a **hierarchical agent architecture with memory**, simulating ho
 
 ## 🧠 Architecture
 
-## 🧠 Architecture
-
 ```mermaid
 flowchart TD
     A[User Input: Sector] --> B[Manager Agent]
@@ -36,9 +34,9 @@ flowchart TD
     G --> I[Push Notification Tool]
     I --> J[User Notification]
 
-    subgraph Memory Layer
+    subgraph ML[Memory Layer]
         M1[Long-Term Memory]
-        M2[Short-Term Memory (RAG)]
+        M2[Short-Term Memory - RAG]
         M3[Entity Memory]
     end
 
@@ -46,8 +44,7 @@ flowchart TD
     E --> M2
     G --> M1
     G --> M3
-````
-
+```
 ---
 
 ## ⚙️ How It Works
