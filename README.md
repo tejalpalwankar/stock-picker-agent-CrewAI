@@ -1,4 +1,3 @@
-````md
 # 📈 AI Stock Picker Agent (CrewAI)
 **Multi-Agent Financial Intelligence System for Automated Investment Decisions**
 
