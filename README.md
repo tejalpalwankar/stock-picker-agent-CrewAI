@@ -19,7 +19,6 @@ The system uses a **hierarchical agent architecture with memory**, simulating ho
 ## 🧠 Architecture
 
 ```mermaid
-flowchart TD
     A[User Input: Sector] --> B[Manager Agent]
 
     B --> C[Trending Company Finder]
