@@ -1,54 +1,196 @@
-# StockPicker Crew
+````md
+# 📈 AI Stock Picker Agent (CrewAI)
+**Multi-Agent Financial Intelligence System for Automated Investment Decisions**
 
-Welcome to the StockPicker Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+---
 
-## Installation
+## 📌 Overview
 
-Ensure you have Python >=3.10 <3.13 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+This project implements a **multi-agent financial analysis system** that autonomously:
 
-First, if you haven't already, install uv:
+- Identifies **trending companies** from real-world news  
+- Performs **deep financial research**  
+- Selects the **best investment opportunity**  
+- Sends a **real-time push notification** with the decision  
+
+The system uses a **hierarchical agent architecture with memory**, simulating how real investment teams collaborate and make decisions.
+
+---
+
+## 🧠 Architecture
+
+```mermaid
+flowchart TD
+    A[User Input: Sector] --> B[Manager Agent]
+
+    B --> C[Trending Company Finder]
+    C --> D[Trending Companies List]
+
+    D --> E[Financial Researcher]
+    E --> F[Research Reports]
+
+    F --> G[Stock Picker]
+    G --> H[Best Investment Decision]
+
+    G --> I[Push Notification Tool]
+    I --> J[User Notification]
+
+    subgraph Memory Layer
+        M1[Long-Term Memory]
+        M2[Short-Term Memory (RAG)]
+        M3[Entity Memory]
+    end
+
+    C --> M2
+    E --> M2
+    G --> M1
+    G --> M3
+````
+
+---
+
+## ⚙️ How It Works
+
+1. **Trending Company Finder**
+
+   * Scans latest news to identify 2–3 trending companies
+
+2. **Financial Researcher**
+
+   * Performs detailed analysis:
+
+     * Market position
+     * Future outlook
+     * Investment potential
+
+3. **Stock Picker**
+
+   * Evaluates all research
+   * Selects the best investment
+   * Provides justification
+
+4. **Push Notification Tool**
+
+   * Sends final decision to the user in real-time
+
+---
+
+## 🧩 Key Features
+
+* Multi-agent orchestration using CrewAI
+* Hierarchical task delegation via a manager agent
+* Memory-enabled reasoning across sessions
+* Structured outputs using Pydantic
+* Real-time notification via external API
+* Modular YAML-based agent and task configuration
+
+---
+
+## 🛠️ Tech Stack
+
+* Python
+* CrewAI
+* OpenAI GPT-4o / GPT-4o-mini
+* Serper API (web search)
+* Pushover API (notifications)
+* Pydantic
+* RAG-based memory system
+
+---
+
+## 📂 Project Structure
+
+```bash
+stock-picker-agent/
+│
+├── src/stock_picker/
+│   ├── crew.py              # Multi-agent orchestration
+│   ├── main.py              # Entry point
+│   ├── tools/
+│   │   └── push_tool.py     # Notification system
+│   └── config/
+│       ├── agents.yaml      # Agent definitions
+│       └── tasks.yaml       # Task pipeline
+│
+├── output/                  # Generated outputs
+├── memory/                  # Persistent memory storage
+├── README.md
+```
+
+---
+
+## ▶️ Setup & Run
+
+### 1. Install dependencies
 
 ```bash
 pip install uv
-```
-
-Next, navigate to your project directory and install the dependencies:
-
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
 crewai install
 ```
-### Customizing
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
+### 2. Configure environment variables
 
-- Modify `src/stock_picker/config/agents.yaml` to define your agents
-- Modify `src/stock_picker/config/tasks.yaml` to define your tasks
-- Modify `src/stock_picker/crew.py` to add your own logic, tools and specific args
-- Modify `src/stock_picker/main.py` to add custom inputs for your agents and tasks
+Create a `.env` file:
 
-## Running the Project
-
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
-
-```bash
-$ crewai run
+```env
+OPENAI_API_KEY=your_key
+SERPER_API_KEY=your_key
+PUSHOVER_USER=your_user
+PUSHOVER_TOKEN=your_token
 ```
 
-This command initializes the stock_picker Crew, assembling the agents and assigning them tasks as defined in your configuration.
+### 3. Run the system
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+```bash
+crewai run
+```
 
-## Understanding Your Crew
+---
 
-The stock_picker Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+## 📊 Example Use Case
 
-## Support
+**Input**
 
-For support, questions, or feedback regarding the StockPicker Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+```
+Sector: Technology
+```
 
-Let's create wonders together with the power and simplicity of crewAI.
+**Output**
+
+* List of trending companies
+* Detailed research reports
+* Final investment decision
+* Push notification with summary
+
+---
+
+## 🔮 Future Improvements
+
+* Portfolio tracking and performance monitoring
+* Risk scoring and ranking models
+* Real-time market data integration
+* Web dashboard for visualization
+* Multi-sector comparative analysis
+
+---
+
+## ⚠️ Note
+
+This project is based on a CrewAI template and has been extended with:
+
+* Hierarchical agent orchestration
+* Memory systems
+* External tool integration
+* Production-style architecture
+
+---
+
+## ⭐ Summary
+
+This project demonstrates:
+
+* Multi-agent system design
+* LLM orchestration with real-world tools
+* Memory-driven decision systems
+* Scalable and modular AI architecture
+
